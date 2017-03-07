@@ -17,7 +17,9 @@ my $desired_dow = 4;
 
 sub _next_thursday {
     my $dt = DateTime->today();
-    $dt->add(days => ($desired_dow - $dt->day_of_week) % 7);
+    my $days = ($desired_dow - $dt->day_of_week) % 7;
+    $days ||= 7;
+    $dt->add(days => $days);
     return $dt->ymd();
 }
 
